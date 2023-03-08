@@ -1,13 +1,27 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-func SetupRouter(r *gin.Engine)  {
+type HelloWorld struct {
+	Name  string `json:"name"`
+	Email string `json:"email"`
+}
+
+func SetupRouter(r *gin.Engine) {
 	// Ping test
 	r.GET("/ping", func(c *gin.Context) {
 		c.String(http.StatusOK, "pong")
+	})
+
+	r.POST("/jwt", func(c *gin.Context) {
+		helloworld := HelloWorld{
+			Name:  "Hello",
+			Email: "World",
+		}
+		c.JSON(http.StatusCreated, helloworld)
 	})
 }
