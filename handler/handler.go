@@ -3,6 +3,8 @@ package handler
 import (
 	"net/http"
 
+	"jwt-server/models"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,11 +13,8 @@ func PongHandler(c *gin.Context) {
 }
 
 func JWTHandler(c *gin.Context) {
-	type HelloWorld struct {
-		Name  string `json:"name"`
-		Email string `json:"email"`
-	}
-	helloworld := HelloWorld{
+
+	helloworld := models.HelloWorld{
 		Name:  "Hello",
 		Email: "World",
 	}
