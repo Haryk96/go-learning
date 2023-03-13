@@ -1,8 +1,8 @@
 package models
 
-type HelloWorld struct {
-	Name  string `json:"name"`
-	Email string `json:"email"`
+type UserCredentials struct {
+	Name     string `json:"name"`
+	Password string `json:"password"`
 }
 
 // // User represents a user in the system

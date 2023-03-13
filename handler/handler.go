@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 
 	"jwt-server/models"
@@ -13,10 +14,16 @@ func PongHandler(c *gin.Context) {
 }
 
 func JWTHandler(c *gin.Context) {
+	name := c.Query("name")
+	age := c.Query("age")
 
-	helloworld := models.HelloWorld{
-		Name:  "Hello",
-		Email: "World",
+	// Read request body return 400
+	// if it does not comply to my model
+	var requestBody models.UserCredentials
+	if err := c.BindJSON(&requestBody); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-	c.JSON(http.StatusCreated, helloworld)
+	fmt.Printf("%s, %s", name, age)
+	c.JSON(http.StatusCreated, requestBody)
 }
