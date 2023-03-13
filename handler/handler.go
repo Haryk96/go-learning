@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 
+	"jwt-server/logger"
 	"jwt-server/models"
 
 	"github.com/gin-gonic/gin"
@@ -14,6 +14,7 @@ func PongHandler(c *gin.Context) {
 }
 
 func JWTHandler(c *gin.Context) {
+	cl := logger.Logger
 	name := c.Query("name")
 	age := c.Query("age")
 
@@ -24,6 +25,8 @@ func JWTHandler(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	fmt.Printf("%s, %s", name, age)
+	cl.Println("Test cl")
+	cl.Printf("%s, %s\n", name, age)
+	cl.Printf("%+v\n", requestBody)
 	c.JSON(http.StatusCreated, requestBody)
 }
