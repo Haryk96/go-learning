@@ -5,16 +5,6 @@ from sys import argv
 
 def test(cycles, proc_num, return_list:list):
     times = []
-    # headers = {
-    #     "sub-token": "eyJhbGciOiAiRWREU0EiLCAidHlwIjogIkpXVCJ9.eyJleHAiOiAxNjc4MTgzMTQ5LjY4NzkyMywgIm5hbSI6ICJqYW4uaGFyZW5jYWsiLCAic3ViIjogInJlcG8tZGViIn0=.DACRqqvvmDJTt834NJfkDMXmKWN_7Dh1xlT7lj-EZtDZ5F963D7oTJBOBriHerk5beXS0njo2gmB4Es97kZLAQ==",
-    #     "secret": "jozefpatrovic"
-    # }
-    # params = {
-    #     "app": "repo-deb",
-    #     "obj": "mirrors",
-    #     "act": "create"
-    # }
-
     for _ in range(cycles):
         start = time()
         res = requests.get(
